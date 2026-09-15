@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MathCrap — the SAT math traps they're counting on</title>
+<meta name="description" content="The 12 SAT math traps that cost the most points, fixed in two lines each. Free cheat sheet, short videos, and one-on-one sessions.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='16' fill='%23D7263D'/><text x='50' y='70' font-size='60' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>x</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FCFCFA;
+    --grid: #D6E2EF;
+    --ink: #1B2A4A;
+    --ink-soft: #4A5670;
+    --pen: #D7263D;
+    --hilite: #FFE86B;
+    --max: 760px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    font-family: Rubik, "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .hand { font-family: Caveat, "Comic Sans MS", cursive; }
+  a { color: var(--ink); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--pen); outline-offset: 3px; }
+
+  header, main, footer { width: min(var(--max), 100% - 2.5rem); margin-inline: auto; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 0; }
+  .logo { font-weight: 900; font-size: 1.35rem; letter-spacing: -0.02em; text-decoration: none; }
+  .logo span { color: var(--pen); }
+  nav a { text-decoration: none; margin-left: 1.25rem; font-weight: 500; color: var(--ink-soft); }
+  nav a:hover { color: var(--pen); }
+  @media (max-width: 520px) { nav a { margin-left: 0.9rem; font-size: 0.95rem; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 2.5rem 0 3rem; }
+  .hero h1 {
+    font-size: clamp(2.2rem, 7vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 900;
+    margin: 0 0 1.25rem;
+    max-width: 14ch;
+  }
+  .hero p.lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 42ch; margin: 0 0 1.75rem; }
+
+  .question {
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 1.1rem 1.25rem 1rem;
+    max-width: 440px;
+    margin: 0 0 2rem;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .question .stem { margin: 0 0 0.6rem; font-weight: 500; }
+  .question ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem; }
+  .question li { padding: 0.15rem 0.4rem; position: relative; display: inline-block; }
+  .question li.trap { position: relative; }
+  .question li.trap::after {
+    content: "";
+    position: absolute; inset: -3px -4px;
+    border: 3px solid var(--pen);
+    border-radius: 50% 45% 55% 50% / 60% 50% 50% 45%;
+    transform: rotate(-3deg);
+  }
+  .question li.right { background: var(--hilite); border-radius: 3px; }
+  .question .note {
+    position: absolute; right: 10px; bottom: -36px;
+    color: var(--pen); font-size: 1.55rem; line-height: 1; transform: rotate(-4deg);
+  }
+  .question .arrow { position: absolute; right: 150px; bottom: -14px; width: 40px; height: 30px; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
+  .btn {
+    display: inline-block; padding: 0.85rem 1.35rem; border-radius: 6px;
+    font-weight: 700; text-decoration: none; font-size: 1rem; border: 2px solid var(--ink);
+    transition: transform 120ms ease;
+  }
+  .btn:active { transform: translate(2px, 2px); }
+  .btn.primary { background: var(--pen); border-color: var(--pen); color: #fff; box-shadow: 4px 4px 0 var(--ink); }
+  .btn.secondary { background: #fff; color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .btn.primary:hover { background: #b81d31; }
+
+  /* ---------- sections ---------- */
+  section { padding: 2.5rem 0; border-top: 2px dashed var(--grid); }
+  h2 { font-size: clamp(1.6rem, 4.5vw, 2.1rem); letter-spacing: -0.02em; font-weight: 900; margin: 0 0 0.5rem; }
+  .sub { color: var(--ink-soft); margin: 0 0 1.75rem; max-width: 52ch; }
+
+  .traps { list-style: none; margin: 0; padding: 0; counter-reset: trap; }
+  .trap {
+    background: #fff; border: 2px solid var(--ink); border-radius: 6px;
+    padding: 1rem 1.1rem 1rem 3.4rem; margin-bottom: 0.9rem; position: relative;
+  }
+  .trap::before {
+    counter-increment: trap; content: counter(trap);
+    position: absolute; left: 0.9rem; top: 0.8rem;
+    font-family: Caveat, cursive; font-weight: 700; font-size: 1.9rem; line-height: 1; color: var(--pen);
+  }
+  .trap h3 { margin: 0 0 0.35rem; font-size: 1.05rem; font-weight: 700; }
+  .trap p { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
+  .trap .wrong { text-decoration: line-through; text-decoration-color: var(--pen); text-decoration-thickness: 2px; color: var(--ink); }
+  .trap .fix { display: block; margin-top: 0.4rem; color: var(--ink); background: var(--hilite); padding: 0.2rem 0.45rem; border-radius: 3px; width: fit-content; max-width: 100%; }
+
+  .download { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+  .download small { color: var(--ink-soft); }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 2px solid var(--ink); font-size: 0.95rem; }
+  th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { background: var(--ink); color: #fff; font-weight: 500; }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 700; width: 38%; }
+  .table-wrap { overflow-x: auto; }
+
+  .book { background: #fff; border: 2px solid var(--ink); border-radius: 6px; padding: 1.5rem; box-shadow: 6px 6px 0 var(--ink); }
+  .book p { margin: 0 0 1rem; }
+  .book ul { margin: 0 0 1.25rem 1.1rem; padding: 0; color: var(--ink-soft); }
+  .book .price { font-size: 1.05rem; font-weight: 500; }
+  .fineprint { font-size: 0.9rem; color: var(--ink-soft); margin-top: 1rem; }
+
+  .channels { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  footer { padding: 2rem 0 3rem; color: var(--ink-soft); font-size: 0.92rem; border-top: 2px dashed var(--grid); }
+  footer a { color: var(--ink-soft); }
+  footer p { margin: 0.35rem 0; }
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="#top">Math<span>Crap</span></a>
+  <nav aria-label="Sections">
+    <a href="#traps">Cheat sheet</a>
+    <a href="#book">Book</a>
+    <a href="#watch">Videos</a>
+  </nav>
+</header>
+
+<main id="top">
+
+  <div class="hero">
+    <h1>The math crap they're counting on.</h1>
+    <p class="lede">The SAT doesn't test whether you can do the math. It tests whether you'll fall for the same twelve traps as everyone else. Here they are, fixed in two lines each.</p>
+
+    <div class="question" aria-label="Example SAT question with the trap answer circled and the right answer highlighted">
+      <p class="stem">x² + y² − 6x + 4y − 12 = 0 is a circle. What is its radius?</p>
+      <ol>
+        <li class="right">A) 5</li>
+        <li>B) 12</li>
+        <li>C) 13</li>
+        <li class="trap">D) 25</li>
+      </ol>
+      <svg class="arrow" viewBox="0 0 40 30" aria-hidden="true"><path d="M2 28 C 12 22, 22 14, 34 4" stroke="#D7263D" stroke-width="3" fill="none" stroke-linecap="round"/><path d="M26 4 L34 4 L33 12" stroke="#D7263D" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="note hand">that's r², not r</span>
+    </div>
+
+    <div class="actions">
+      <a class="btn primary" href="https://calendar.app.google/ep6tw6RSPaCsKgyf8" target="_blank" rel="noopener">Book a session</a>
+      <a class="btn secondary" href="#traps">See the 12 traps</a>
+    </div>
+  </div>
+
+  <section id="traps">
+    <h2>The 12 traps</h2>
+    <p class="sub">Each one shows up on almost every test, and each one has a wrong answer waiting for you in the choices. Cross it out before you start.</p>
+
+    <ol class="traps">
+      <li class="trap"><h3>The radius is the square root</h3><p><span class="wrong">(x−3)² + (y+2)² = 25, so r = 25</span><span class="fix">The right side is r². Radius is 5. And the center is (3, −2): signs flip.</span></p></li>
+      <li class="trap"><h3>"Exactly one solution" means the discriminant is zero</h3><p><span class="wrong">One solution, so x = 1</span><span class="fix">Set b² − 4ac = 0 and solve for the unknown constant.</span></p></li>
+      <li class="trap"><h3>The minimum value is the y, not the x</h3><p><span class="wrong">Vertex at x = 3, so the minimum is 3</span><span class="fix">Plug x = −b/(2a) back in. The minimum is f(3), not 3.</span></p></li>
+      <li class="trap"><h3>Percents multiply, they don't add</h3><p><span class="wrong">Up 25% then down 20% = up 5%</span><span class="fix">1.25 × 0.80 = 1.00. No change at all.</span></p></li>
+      <li class="trap"><h3>Inside the parentheses is backwards</h3><p><span class="wrong">f(x − 2) moves the graph left 2</span><span class="fix">f(x − 2) is RIGHT 2. Only the "+3" outside goes the way it looks (up 3).</span></p></li>
+      <li class="trap"><h3>Squaring creates fake answers</h3><p><span class="wrong">√(2x + 7) = x + 2, so x = 1 and x = −3</span><span class="fix">Check both in the original. −3 gives 1 = −1. Only x = 1.</span></p></li>
+      <li class="trap"><h3>"No solution" doesn't mean you solved it wrong</h3><p><span class="wrong">(x+3)/(x−2) = 5/(x−2), so x = 2</span><span class="fix">x = 2 makes the denominator zero. No solution is the answer.</span></p></li>
+      <li class="trap"><h3>A zero at 3 is the factor (x − 3)</h3><p><span class="wrong">p(3) = 0, so (x + 3) is a factor</span><span class="fix">Factor theorem: p(a) = 0 means (x − a). Sign flips.</span></p></li>
+      <li class="trap"><h3>Area scales by k², volume by k³</h3><p><span class="wrong">Sides 1.5× bigger, so area is 1.5× bigger</span><span class="fix">Area is 2.25× bigger. Double a sphere's radius and volume goes up 8×.</span></p></li>
+      <li class="trap"><h3>Infinitely many solutions = the same line</h3><p><span class="wrong">Set the two equations equal and solve</span><span class="fix">Make one equation a multiple of the other. Coefficients AND constants must match. If only the coefficients match, it's no solution.</span></p></li>
+      <li class="trap"><h3>The outlier moves the mean, not the median</h3><p><span class="wrong">3, 5, 5, 8, 9, 30 — "cannot be determined"</span><span class="fix">Mean 10, median 6.5. Big high value → mean > median. You never need to compute standard deviation, just compare spread.</span></p></li>
+      <li class="trap"><h3>The slope is "per," the intercept is "start"</h3><p><span class="wrong">C = 45 + 0.20m, so 45 is the cost per mile</span><span class="fix">0.20 is the cost per mile (it multiplies m). 45 is the fee when m = 0.</span></p></li>
+    </ol>
+
+    <div class="download">
+      <a class="btn secondary" href="mathcrap-sat-cheat-sheet.pdf" download>Download the full cheat sheet (PDF)</a>
+      <small>7 pages: the method, a worked example, and the trap for every one of the 12. Free, no email required.</small>
+    </div>
+  </section>
+
+  <section id="formulas">
+    <h2>Formulas the reference sheet doesn't give you</h2>
+    <p class="sub">The SAT hands you area and volume. These are the ones it makes you remember.</p>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th scope="col">Situation</th><th scope="col">What to use</th></tr></thead>
+      <tbody>
+        <tr><td>How many solutions?</td><td>b² − 4ac: positive → 2, zero → 1, negative → none</td></tr>
+        <tr><td>Max or min of a parabola</td><td>x = −b/(2a), then plug in for the value</td></tr>
+        <tr><td>Sum / product of solutions</td><td>−b/a and c/a (no factoring needed)</td></tr>
+        <tr><td>Growth or decay</td><td>a(1 + r)^t grows, a(1 − r)^t shrinks; "every n years" → t/n</td></tr>
+        <tr><td>Same base, solve exponents</td><td>32 = 2⁵, 27 = 3³, then set exponents equal</td></tr>
+        <tr><td>Circle equation</td><td>(x − h)² + (y − k)² = r², center (h, k)</td></tr>
+        <tr><td>Arc length / sector area</td><td>(θ/360)·2πr and (θ/360)·πr²</td></tr>
+        <tr><td>sin(x°) = cos(y°)</td><td>x + y = 90</td></tr>
+        <tr><td>Percent change</td><td>(new − old) / old</td></tr>
+        <tr><td>|A| &lt; c</td><td>−c &lt; A &lt; c (sandwich); |A| &gt; c is two separate pieces</td></tr>
+        <tr><td>Density</td><td>mass = density × volume; convert units first</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </section>
+
+  <section id="book">
+    <h2>Work through it with a person</h2>
+    <div class="book">
+      <p>One hour, online, with a tutor who has watched hundreds of students fall for these and knows exactly which one you're about to. Bring a practice test you've already taken; the wrong answers are the lesson plan.</p>
+      <ul>
+        <li>SAT math, including the hard second module</li>
+        <li>GED math, from the calculator up</li>
+        <li>ACT math if that's the test you're stuck on</li>
+      </ul>
+      <a class="btn primary" href="https://calendar.app.google/ep6tw6RSPaCsKgyf8" target="_blank" rel="noopener">Pick a time</a>
+      <p class="fineprint">Booking opens in a new tab. Weekend and Friday times only for now; more open up as the semester settles.</p>
+    </div>
+  </section>
+
+  <section id="watch">
+    <h2>One trap a day, under 40 seconds</h2>
+    <p class="sub">The videos are the cheat sheet, read out loud by someone who's on your side. New one every day.</p>
+    <div class="channels">
+      <a class="btn secondary" href="https://www.tiktok.com/@mathcrap" target="_blank" rel="noopener">TikTok @mathcrap</a>
+      <a class="btn secondary" href="https://www.youtube.com/@mathcrap" target="_blank" rel="noopener">YouTube @mathcrap</a>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <p><strong>MathCrap</strong> · questions and session requests: <a href="mailto:iammathcrap@gmail.com">iammathcrap@gmail.com</a></p>
+  <p>Need the reading and writing side too, or English coaching for the TOEFL and IELTS? That lives at <a href="https://cuteenglishteacher.ai" target="_blank" rel="noopener">cuteenglishteacher.ai</a>.</p>
+  <p>© <span id="yr">2026</span> MathCrap. SAT is a trademark of the College Board, which has nothing to do with this site and would probably prefer it were named something else.</p>
+</footer>
+
+<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+</body>
+</html>
