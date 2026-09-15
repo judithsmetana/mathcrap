@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms of service — MathCrap</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700;900&family=Caveat:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FCFCFA;
+    --grid: #D6E2EF;
+    --ink: #1B2A4A;
+    --ink-soft: #4A5670;
+    --pen: #D7263D;
+    --hilite: #FFE86B;
+    --max: 760px;
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    font-family: Rubik, "Segoe UI", Arial, sans-serif;
+    font-size: 17px;
+    line-height: 1.55;
+    color: var(--ink);
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+  .hand { font-family: Caveat, "Comic Sans MS", cursive; }
+  a { color: var(--ink); }
+  a:focus-visible, button:focus-visible { outline: 3px solid var(--pen); outline-offset: 3px; }
+
+  header, main, footer { width: min(var(--max), 100% - 2.5rem); margin-inline: auto; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding: 1.25rem 0; }
+  .logo { font-weight: 900; font-size: 1.35rem; letter-spacing: -0.02em; text-decoration: none; }
+  .logo span { color: var(--pen); }
+  nav a { text-decoration: none; margin-left: 1.25rem; font-weight: 500; color: var(--ink-soft); }
+  nav a:hover { color: var(--pen); }
+  @media (max-width: 520px) { nav a { margin-left: 0.9rem; font-size: 0.95rem; } }
+
+  /* ---------- hero ---------- */
+  .hero { padding: 2.5rem 0 3rem; }
+  .hero h1 {
+    font-size: clamp(2.2rem, 7vw, 3.6rem);
+    line-height: 1.02;
+    letter-spacing: -0.03em;
+    font-weight: 900;
+    margin: 0 0 1.25rem;
+    max-width: 14ch;
+  }
+  .hero p.lede { font-size: 1.15rem; color: var(--ink-soft); max-width: 42ch; margin: 0 0 1.75rem; }
+
+  .question {
+    background: #fff;
+    border: 2px solid var(--ink);
+    border-radius: 6px;
+    padding: 1.1rem 1.25rem 1rem;
+    max-width: 440px;
+    margin: 0 0 2rem;
+    position: relative;
+    box-shadow: 6px 6px 0 var(--ink);
+  }
+  .question .stem { margin: 0 0 0.6rem; font-weight: 500; }
+  .question ol { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0.3rem 1rem; }
+  .question li { padding: 0.15rem 0.4rem; position: relative; display: inline-block; }
+  .question li.trap { position: relative; }
+  .question li.trap::after {
+    content: "";
+    position: absolute; inset: -3px -4px;
+    border: 3px solid var(--pen);
+    border-radius: 50% 45% 55% 50% / 60% 50% 50% 45%;
+    transform: rotate(-3deg);
+  }
+  .question li.right { background: var(--hilite); border-radius: 3px; }
+  .question .note {
+    position: absolute; right: 10px; bottom: -36px;
+    color: var(--pen); font-size: 1.55rem; line-height: 1; transform: rotate(-4deg);
+  }
+  .question .arrow { position: absolute; right: 150px; bottom: -14px; width: 40px; height: 30px; }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2.5rem; }
+  .btn {
+    display: inline-block; padding: 0.85rem 1.35rem; border-radius: 6px;
+    font-weight: 700; text-decoration: none; font-size: 1rem; border: 2px solid var(--ink);
+    transition: transform 120ms ease;
+  }
+  .btn:active { transform: translate(2px, 2px); }
+  .btn.primary { background: var(--pen); border-color: var(--pen); color: #fff; box-shadow: 4px 4px 0 var(--ink); }
+  .btn.secondary { background: #fff; color: var(--ink); box-shadow: 4px 4px 0 var(--ink); }
+  .btn.primary:hover { background: #b81d31; }
+
+  /* ---------- sections ---------- */
+  section { padding: 2.5rem 0; border-top: 2px dashed var(--grid); }
+  h2 { font-size: clamp(1.6rem, 4.5vw, 2.1rem); letter-spacing: -0.02em; font-weight: 900; margin: 0 0 0.5rem; }
+  .sub { color: var(--ink-soft); margin: 0 0 1.75rem; max-width: 52ch; }
+
+  .traps { list-style: none; margin: 0; padding: 0; counter-reset: trap; }
+  .trap {
+    background: #fff; border: 2px solid var(--ink); border-radius: 6px;
+    padding: 1rem 1.1rem 1rem 3.4rem; margin-bottom: 0.9rem; position: relative;
+  }
+  .trap::before {
+    counter-increment: trap; content: counter(trap);
+    position: absolute; left: 0.9rem; top: 0.8rem;
+    font-family: Caveat, cursive; font-weight: 700; font-size: 1.9rem; line-height: 1; color: var(--pen);
+  }
+  .trap h3 { margin: 0 0 0.35rem; font-size: 1.05rem; font-weight: 700; }
+  .trap p { margin: 0; color: var(--ink-soft); font-size: 0.98rem; }
+  .trap .wrong { text-decoration: line-through; text-decoration-color: var(--pen); text-decoration-thickness: 2px; color: var(--ink); }
+  .trap .fix { display: block; margin-top: 0.4rem; color: var(--ink); background: var(--hilite); padding: 0.2rem 0.45rem; border-radius: 3px; width: fit-content; max-width: 100%; }
+
+  .download { display: flex; flex-wrap: wrap; align-items: center; gap: 1rem; margin-top: 1.5rem; }
+  .download small { color: var(--ink-soft); }
+
+  table { width: 100%; border-collapse: collapse; background: #fff; border: 2px solid var(--ink); font-size: 0.95rem; }
+  th, td { text-align: left; padding: 0.6rem 0.75rem; border-bottom: 1px solid var(--grid); vertical-align: top; }
+  th { background: var(--ink); color: #fff; font-weight: 500; }
+  tr:last-child td { border-bottom: 0; }
+  td:first-child { font-weight: 700; width: 38%; }
+  .table-wrap { overflow-x: auto; }
+
+  .book { background: #fff; border: 2px solid var(--ink); border-radius: 6px; padding: 1.5rem; box-shadow: 6px 6px 0 var(--ink); }
+  .book p { margin: 0 0 1rem; }
+  .book ul { margin: 0 0 1.25rem 1.1rem; padding: 0; color: var(--ink-soft); }
+  .book .price { font-size: 1.05rem; font-weight: 500; }
+  .fineprint { font-size: 0.9rem; color: var(--ink-soft); margin-top: 1rem; }
+
+  .channels { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+  footer { padding: 2rem 0 3rem; color: var(--ink-soft); font-size: 0.92rem; border-top: 2px dashed var(--grid); }
+  footer a { color: var(--ink-soft); }
+  footer p { margin: 0.35rem 0; }
+</style>
+
+<style>
+  .legal { max-width: 68ch; }
+  .legal h1 { font-size: clamp(1.9rem, 5vw, 2.6rem); letter-spacing: -0.03em; font-weight: 900; margin: 2rem 0 0.25rem; }
+  .legal .updated { color: var(--ink-soft); margin: 0 0 2rem; }
+  .legal h2 { font-size: 1.25rem; margin: 1.75rem 0 0.4rem; }
+  .legal p, .legal li { color: var(--ink); }
+  .legal ul { padding-left: 1.2rem; }
+</style>
+
+</head>
+<body>
+<header>
+  <a class="logo" href="index.html">Math<span>Crap</span></a>
+  <nav aria-label="Sections">
+    <a href="index.html#traps">Cheat sheet</a>
+    <a href="index.html#book">Book</a>
+    <a href="index.html#watch">Videos</a>
+  </nav>
+</header>
+<main class="legal">
+
+<h1>Terms of service</h1>
+<p class="updated">Last updated September 15, 2026</p>
+
+<p>MathCrap is a math tutoring and study-help brand operated by cuteenglishteacher LLC, a North Carolina limited liability company ("we," "us"). By using mathcrap.com, downloading anything from it, watching our videos, or booking a session, you agree to these terms. If you don't agree, please don't use the site or book a session.</p>
+
+<h2>What we offer</h2>
+<p>We provide test-prep study materials (such as the free cheat sheet), short educational videos, and one-on-one online tutoring sessions for SAT, ACT, and GED math and related subjects. Sessions are booked through a Google Calendar booking page linked from this site and held online by video call.</p>
+
+<h2>No guarantee of results</h2>
+<p>We work hard to help you improve, but test scores depend on many things we don't control, including how much you practice. We do not guarantee any particular score, grade, admission, or outcome. Our materials are study aids, not official test content.</p>
+
+<h2>Booking, payment, and cancellations</h2>
+<ul>
+  <li>A session is confirmed once it appears on the booking calendar and you receive a confirmation email.</li>
+  <li>Session fees are stated at the time of booking and are due before the session begins unless we've agreed otherwise in writing.</li>
+  <li>You may cancel or reschedule free of charge up to 24 hours before the start time. Cancellations with less than 24 hours' notice, and no-shows, may be charged the full session fee.</li>
+  <li>If we have to cancel, you'll receive a full refund or a rescheduled session, your choice.</li>
+  <li>Sessions start and end at the scheduled time; arriving late shortens your session and does not extend it.</li>
+</ul>
+
+<h2>Students under 18</h2>
+<p>If you are under 18, a parent or legal guardian must book the session for you and agree to these terms on your behalf. We may ask that a parent or guardian be reachable during the session. We do not knowingly collect personal information from children under 13; see our <a href="privacy.html">privacy policy</a>.</p>
+
+<h2>Your conduct</h2>
+<p>Be respectful in sessions and in comments on our videos. We may end a session or decline future bookings, without refund, if a student is abusive, harassing, or asks us to complete graded work on their behalf. We do not do your homework, take tests for you, or help with anything that would violate a school's or test-maker's rules.</p>
+
+<h2>Our content</h2>
+<p>The cheat sheet, practice questions, videos, and everything else on this site are ours (or used with permission). You may download and use them for your own personal study, and you may share a link to this site. You may not resell them, repost them as your own, remove our name from them, or use them in a course or product you sell. Teachers and tutors who want to use our materials with their students can email us; we usually say yes.</p>
+
+<h2>Trademarks</h2>
+<p>SAT is a registered trademark of the College Board. ACT is a registered trademark of ACT, Inc. GED is a registered trademark of the American Council on Education. None of these organizations sponsors, endorses, or is affiliated with MathCrap, and none of them reviewed our materials.</p>
+
+<h2>Third-party services</h2>
+<p>Booking runs through Google Calendar, and our videos are hosted on TikTok and YouTube. Those services have their own terms and privacy policies, which apply when you use them. We are not responsible for their availability or how they handle your information.</p>
+
+<h2>Limitation of liability</h2>
+<p>The site and its materials are provided "as is." To the fullest extent allowed by law, we are not liable for indirect, incidental, or consequential damages arising from your use of the site or our sessions, and our total liability to you for any claim is limited to the amount you paid us for the session in question.</p>
+
+<h2>Changes</h2>
+<p>We may update these terms from time to time. The date at the top tells you when they last changed. Continuing to use the site after a change means you accept the new terms.</p>
+
+<h2>Governing law</h2>
+<p>These terms are governed by the laws of the State of North Carolina, without regard to its conflict-of-law rules. Any dispute will be resolved in the state or federal courts located in Brunswick County, North Carolina.</p>
+
+<h2>Contact</h2>
+<p>Questions about these terms: <a href="mailto:iammathcrap@gmail.com">iammathcrap@gmail.com</a>.</p>
+
+</main>
+<footer>
+  <p><strong>MathCrap</strong> · <a href="mailto:iammathcrap@gmail.com">iammathcrap@gmail.com</a> · <a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a></p>
+  <p>© 2026 MathCrap. SAT is a trademark of the College Board; ACT is a trademark of ACT, Inc.; GED is a trademark of the American Council on Education. None of them are affiliated with this site.</p>
+</footer>
+</body>
+</html>
